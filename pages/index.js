@@ -1,5 +1,6 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import Link from 'next/link';
+import { FormattedMessage } from 'react-intl';
+import { useRouter } from 'next/router';
 
 export default function IndexPage(props) {
   const router = useRouter()
@@ -7,7 +8,13 @@ export default function IndexPage(props) {
 
   return (
     <div>
-      <h1>Index page</h1>
+      <h1>
+        <FormattedMessage
+          id="hello"
+          defaultMessage="Hello"
+        />
+      </h1>
+
       <p>Current locale: {locale}</p>
       <p>Default locale: {defaultLocale}</p>
       <p>Configured locales: {JSON.stringify(locales)}</p>
