@@ -3,7 +3,7 @@
 ## Features
 
 1. Uses `react-intl` library.
-2. Lazy load locale files.
+2. Lazy load locale files. (preload current locale file for faster rendering)
 3. Uses component/feature based locale file
 
 ## Folder Structure
