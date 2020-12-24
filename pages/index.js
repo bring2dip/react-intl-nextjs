@@ -1,38 +1,15 @@
-import Link from 'next/link';
-import { FormattedMessage } from 'react-intl';
-import { useRouter } from 'next/router';
+import React from 'react';
+import App, { IntlProvider } from 'features/app';
+import SimpleLayout  from 'layouts/Simple';
 
-export default function IndexPage(props) {
-  const router = useRouter()
-  const { locale, locales, defaultLocale } = router
+const Index = () => {
+  return <App />;
+};
 
-  return (
-    <div>
-      <h1>
-        <FormattedMessage
-          id="hello"
-          defaultMessage="Hello"
-        />
-      </h1>
+Index.Layout = SimpleLayout;
 
-      <p>Current locale: {locale}</p>
-      <p>Default locale: {defaultLocale}</p>
-      <p>Configured locales: {JSON.stringify(locales)}</p>
+Index.IntlProvider = IntlProvider;
 
-      <Link href="/gsp">
-        <a>To getStaticProps page</a>
-      </Link>
-      <br />
+export default Index;
 
-      <Link href="/gsp/first">
-        <a>To dynamic getStaticProps page</a>
-      </Link>
-      <br />
 
-      <Link href="/gssp">
-        <a>To getServerSideProps page</a>
-      </Link>
-      <br />
-    </div>
-  )
-}
