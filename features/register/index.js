@@ -4,22 +4,12 @@ import { useRouter } from 'next/router';
 import React, {useEffect, useState} from 'react';
 import ReactIntlProvider from 'components/ReactIntlProvider';
 
-import en from './locale/en';
-import fr from './locale/fr';
-import np from './locale/np';
-
-const languageMaps = {
-  en,
-  fr,
-  np,
-};
-
 export const IntlProvider = ({ children }) => {
   const router = useRouter()
   const { locale } = router;
 
   return (
-    <ReactIntlProvider messages={languageMaps[locale]}>
+    <ReactIntlProvider localeFile={() => import(/* webpackMode: "eager" */`./locale/${locale}.js`)}>
       {children}
     </ReactIntlProvider>
   );

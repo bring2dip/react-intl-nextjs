@@ -16,14 +16,13 @@ const languageMaps = {
 export default function Header() {
   const router = useRouter();
 
+  const { locale } = router;
   const handleLanguageChange = (selectedLocale) => () => {
     router.push('/', '/', { locale: selectedLocale }  );
   };
 
-  const { locale } = router;
-
   return (
-    <ReactIntlProvider messages={languageMaps[locale]}>
+    <ReactIntlProvider localeFile={() => import(/* webpackMode: "eager" */`./locale/${locale}.js`)}>
       <>
         <FormattedMessage
           id="translate"

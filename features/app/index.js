@@ -3,23 +3,12 @@ import Link from 'next/link';
 import { FormattedMessage } from 'react-intl';
 import ReactIntlProvider from 'components/ReactIntlProvider';
 import { useRouter } from 'next/router';
-import en from './locale/en';
-import fr from './locale/fr';
-import np from './locale/np';
-
-const languageMaps = {
-  en,
-  fr,
-  np,
-};
-
 
 export const IntlProvider = ({ children }) => {
   const router = useRouter()
-  const { locale, locales, defaultLocale } = router;
-
+  const { locale } = router;
   return (
-    <ReactIntlProvider messages={languageMaps[locale]}>
+    <ReactIntlProvider localeFile={() => import(/* webpackMode: "eager" */`./locale/${locale}.js`)}>
       {children}
     </ReactIntlProvider>
   );
